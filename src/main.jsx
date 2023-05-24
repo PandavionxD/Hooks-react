@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
+// import { HooksApp } from './HooksApp'
+// import { CounterApp } from './01.useState/CounterApp'
+// import CounterWithApp from './01.useState/CounterWithApp'
+import { SimpleForm } from './02.useEffect/SimpleForm'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+  <SimpleForm/>
 )
