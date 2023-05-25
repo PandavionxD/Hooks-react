@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Messaje } from "./Messaje";
 
 export const SimpleForm = () => {
 
@@ -19,15 +20,15 @@ export const SimpleForm = () => {
 
     // USOS DEL USE EFFECT
     useEffect(()=>{
-        console.log('Hola estamos usando use efect')
+        // console.log('Hola estamos usando use efect')
     },[])
 
     useEffect(()=>{
-        console.log('Cambio en el formulario')
+        // console.log('Cambio en el formulario')
     },[formState])
 
     useEffect(()=>{
-        console.log('cambio dentro del formulario en email')
+        // console.log('cambio dentro del formulario en email')
     },[email])
 
 
@@ -49,6 +50,8 @@ export const SimpleForm = () => {
                 placeholder="Juan@mail.com"
                 value={email}
                 onChange={onclickChange} />
+            
+        { (username === 'Miguel2') && <Messaje/>  }
         </>
     )
 }
