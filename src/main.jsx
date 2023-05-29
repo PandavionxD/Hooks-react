@@ -1,7 +1,8 @@
-import React from 'react'
+// import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { UseRef } from './04.useRef/UseRef'
+// import { UseRef } from './04.useRef/UseRef'
+import { TodoApp } from './05.useReduce/TodoApp'
 // import { HooksApp } from './HooksApp'
 // import { CounterApp } from './01.useState/CounterApp'
 // import CounterWithApp from './01.useState/CounterWithApp'
@@ -11,5 +12,5 @@ import { UseRef } from './04.useRef/UseRef'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-  <UseRef/>
+  <TodoApp/>
 )
