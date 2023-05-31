@@ -1,26 +1,38 @@
-import { useReducer } from "react"
+import { useEffect, useReducer } from "react"
 import { todoReducer } from "./todoReducer"
 import { TodoList } from "./components/TodoList"
 import { TodoAdd } from "./components/TodoAdd"
 
-const initialState = [{
-    id: new Date().getTime(),
-    description: 'Recolectar la piedra del alma',
-    done: false
-}, {
-    id: new Date().getTime() * 3,
-    description: 'Recolectar la piedra del poder',
-    done: false
-}]
+const initialState = [
+    //     {
+    //     id: new Date().getTime(),
+    //     description: 'Recolectar la piedra del alma',
+    //     done: false
+    //      }
+]
 
+const init = ()=>{
+    return JSON.parse(localStorage.getItem('todos')) || []
+}
 
 export const TodoApp = () => {
 
-    const [todos, dispatch] = useReducer(todoReducer, initialState)
+    const [todos, dispatch] = useReducer(todoReducer, initialState,init)
 
-    const mensaje = (todo)=>[
-        console.log(todo)
-    ]
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos) )
+
+    }, [todos])
+    
+
+    const mensaje = (todo) => {
+
+        const action = {
+            type: 'add Todo',
+            payload: todo
+        }
+        dispatch(action)
+    }
 
     return (
         <>
@@ -29,7 +41,7 @@ export const TodoApp = () => {
             <div className="row">
                 <div className="col-7">
 
-                    <TodoList  todos = {todos}  />
+                    <TodoList todos={todos} />
 
                 </div>
                 <div className="col-5">
@@ -37,7 +49,7 @@ export const TodoApp = () => {
                         Agregar Todo
                     </h4>
                     <hr />
-                    <TodoAdd  onNewTodo={mensaje}  />
+                    <TodoAdd onNewTodo={mensaje} />
                 </div>
             </div>
 
