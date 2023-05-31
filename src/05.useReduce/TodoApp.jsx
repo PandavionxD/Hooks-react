@@ -11,19 +11,26 @@ const initialState = [
     //      }
 ]
 
-const init = ()=>{
+const init = () => {
     return JSON.parse(localStorage.getItem('todos')) || []
 }
 
 export const TodoApp = () => {
 
-    const [todos, dispatch] = useReducer(todoReducer, initialState,init)
+    const [todos, dispatch] = useReducer(todoReducer, initialState, init)
 
     useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos) )
+        localStorage.setItem('todos', JSON.stringify(todos))
 
     }, [todos])
-    
+
+    const onDeleteTodo = (id) => {
+        dispatch({
+            type: 'remove Todo',
+            payload: id
+        })
+    }
+
 
     const mensaje = (todo) => {
 
@@ -34,14 +41,27 @@ export const TodoApp = () => {
         dispatch(action)
     }
 
+    const ToggleCompleted = (id) => {
+        // console.log(id)
+        dispatch({
+            type:'toggle Todo',
+            payload:id
+        })
+
+    }
+    
+
     return (
         <>
-            <h1>TodoApp: 10, <small> Pendientes: (2) </small> </h1>
+            <h1>TodoApp: {todos.length} , <small> Pendientes: ( {todos.filter(todo=>todo.done === false).length }) </small> </h1>
             <hr />
             <div className="row">
                 <div className="col-7">
 
-                    <TodoList todos={todos} />
+                    <TodoList todos={todos}
+                        onDeleteTodo={onDeleteTodo}
+                        ToggleCompleted={ToggleCompleted}
+                    />
 
                 </div>
                 <div className="col-5">
